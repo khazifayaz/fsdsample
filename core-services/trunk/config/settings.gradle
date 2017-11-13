@@ -1,0 +1,18 @@
+rootProject.name = 'core-config'
+
+include 'sample-server'
+
+rootProject.children.each {project ->
+
+    String fileBaseName = project.name
+    String projectDirName = "../services/$fileBaseName"
+
+    project.projectDir = new File(settingsDir, projectDirName)
+    project.buildFileName = "build.gradle"
+
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.isFile()
+
+}
+rootProject.name = 'config'
+

@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "fsd"
+      MYSQL_DATABASE: "fsd"
+      MYSQL_USER: "fsd"
+      MYSQL_PASSWORD: "fsd"
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+    restart: always
+
+  sample-server:
+    image: fsdapps/sample-server:0.0.1-SNAPSHOT
+    depends_on:
+    - mysql
+    ports:
+    - 9191:9191
+    environment:
+    - DATABASE_HOST=mysql
+    - DATABASE_USER=fsd
+    - DATABASE_PASSWORD=fsd
+    - DATABASE_NAME=fsd
+    - DATABASE_PORT=3306
