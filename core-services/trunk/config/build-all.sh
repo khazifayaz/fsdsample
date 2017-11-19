@@ -10,4 +10,4 @@ function note() {
 set -e
 
 
-note "Building sample-server...";            gradle :sample-server:buildDocker;
+note "Building sample-server...";            gradle :sample-server:buildDockerMysql;

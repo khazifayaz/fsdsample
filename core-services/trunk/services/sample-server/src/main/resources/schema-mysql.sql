@@ -6,5 +6,3 @@ created_at datetime,
 updated_at datetime,
 PRIMARY KEY (id)
 );
-
-

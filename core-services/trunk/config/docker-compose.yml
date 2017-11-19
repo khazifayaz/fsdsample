@@ -1,29 +1,48 @@
 version: '3'
 
 services:
-  mysql:
-    image: mysql
-    container_name: mysql-db
+  demo-mysql:
+    image: mysql:latest
+#    container_name: mysql-db
     ports:
       - 3306:3306
+#    networks:
+#      - net-spring-db
     environment:
-      MYSQL_ROOT_PASSWORD: "fsd"
-      MYSQL_DATABASE: "fsd"
-      MYSQL_USER: "fsd"
-      MYSQL_PASSWORD: "fsd"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 #    volumes:
-#      - mysql_data:/var/lib/mysql
-    restart: always
+#     - /c/f/fsd/mysqlvolume:
+##    - mysql_data:/c/f/fsd/mysqlvolume
+#    restart: always
 
   sample-server:
     image: fsdapps/sample-server:0.0.1-SNAPSHOT
     depends_on:
-    - mysql
+      - demo-mysql
+#    command: >
+#          /bin/bash -c "
+#            while ! nc -z mysql 3306;
+#            do
+#              echo sleeping;
+#              sleep 1;
+#            done;
+#            echo Connected!;
+#          "
     ports:
     - 9191:9191
+#    networks:
+#    - net-spring-db
     environment:
-    - DATABASE_HOST=mysql
-    - DATABASE_USER=fsd
-    - DATABASE_PASSWORD=fsd
-    - DATABASE_NAME=fsd
-    - DATABASE_PORT=3306
+      DATABASE_HOST: ${MYSQL_HOST}
+      DATABASE_USER: ${MYSQL_USER}
+      DATABASE_PASSWORD: ${MYSQL_PASSWORD}
+      DATABASE_NAME: ${MYSQL_DATABASE}
+      DATABASE_PORT: ${MYSQL_PORT}
+#      WAIT_HOSTS: mysql:3306
+
+#networks:
+#  net-spring-db:
+#    driver: bridge
