@@ -1,4 +1,4 @@
-package com.fsd.coreservices.demo.model;
+package com.fsd.coreservices.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotBlank;

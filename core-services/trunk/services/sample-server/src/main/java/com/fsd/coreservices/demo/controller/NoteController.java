@@ -1,6 +1,6 @@
 package com.fsd.coreservices.demo.controller;
 
-import com.fsd.coreservices.demo.model.Note;
+import com.fsd.coreservices.demo.entity.Note;
 import com.fsd.coreservices.demo.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

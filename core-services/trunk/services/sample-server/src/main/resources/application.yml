@@ -23,7 +23,7 @@ spring:
 
 ---
 spring:
-  profiles: container
+  profiles: docker
   datasource:
     url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
     password: ${DATABASE_PASSWORD}

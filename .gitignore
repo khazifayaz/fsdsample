@@ -1,0 +1,3 @@
+core-services/trunk/config/.gradle/**
+core-services/trunk/config/.idea/**
+core-services/trunk/services/sample-server/build/**
