@@ -16,6 +16,13 @@ spring:
     initialize: false
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9090/user
+
+management:
+  security:
+    enabled: false
 
 ---
 spring:
@@ -30,3 +37,10 @@ spring:
 #    database: MYSQL
 #    hibernate:
 #      ddl-auto: validate
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9090/user
+
+management:
+  security:
+    enabled: false
