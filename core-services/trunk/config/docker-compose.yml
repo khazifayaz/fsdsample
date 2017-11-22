@@ -1,6 +1,19 @@
 version: '3'
 
 services:
+  config:
+    image: fsdapps/core-config-server:0.0.1-SNAPSHOT
+    ports:
+    - 9995
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9995/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
   demo-mysql:
     image: mysql:latest
 #    container_name: mysql-db

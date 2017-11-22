@@ -9,5 +9,5 @@ function note() {
 
 set -e
 
-
-note "Building sample-server...";            gradle :sample-server:buildDockerMysql;
+note "Building config...";          gradle :core-config-server:buildDocker;
+note "Building sample-server...";   gradle :sample-server:buildDockerMysql;

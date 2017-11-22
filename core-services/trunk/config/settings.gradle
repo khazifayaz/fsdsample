@@ -1,6 +1,7 @@
 rootProject.name = 'core-config'
 
 include 'sample-server'
+include 'core-config-server'
 
 rootProject.children.each {project ->
 
