@@ -71,6 +71,11 @@ public class BookController {
         return bookRepository.save(book);
     }
 
+    @PostMapping("/addBook")
+    public Book addBook( @RequestBody Book book) {
+        return bookRepository.save(book);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable(value = "id") Long bookId,@RequestBody Book bookDetails) {
         Book book = bookRepository.findOne(bookId);
