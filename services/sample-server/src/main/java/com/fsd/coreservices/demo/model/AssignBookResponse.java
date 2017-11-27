@@ -5,9 +5,17 @@ package com.fsd.coreservices.demo.model;
  */
 public class AssignBookResponse {
 
-    private Long bookId;
-    private Long userId;
+    private Integer bookId;
+    private Integer userId;
     private String message;
+
+    public AssignBookResponse() {
+    }
+
+    public AssignBookResponse(Integer bookId, Integer userId) {
+        this.bookId = bookId;
+        this.userId = userId;
+    }
 
     public String getMessage() {
         return "Book " + bookId + " assigned to " + userId;
@@ -18,19 +26,19 @@ public class AssignBookResponse {
     }
 
 
-    public Long getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(Long bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 }

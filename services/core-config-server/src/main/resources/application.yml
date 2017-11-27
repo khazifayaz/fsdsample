@@ -8,7 +8,7 @@ spring:
         server:
             uri: "https://git@${git_url}/khazifayaz/fsdsample.git"
             searchPaths: config*,sample*
-            search-paths: core-services/trunk/config
+            search-paths: config
             repos:
               inventory:
                 pattern: product*,location*,odc*,inventory-composite*

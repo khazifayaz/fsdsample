@@ -1,7 +1,9 @@
 info:
   component: sample server
 
- management.security.enabled: false
+management:
+  security:
+    enabled: false
 
 encrypt:
   failOnError: false
@@ -14,7 +16,7 @@ spring:
     active: local
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: http://localhost:9995
       label: master #always use development branch
       username: root
       password: '{cipher}3fb2a2a25d3143ee052178842685af1a49a6e4d926c8bf44f8160c3609f7d1b6'
@@ -26,7 +28,7 @@ spring:
   profiles: docker
   cloud:
     config:
-      uri: http://config:8888
+      uri: http://core-config:9995
       label: master #always use development branch
       username: root
       password: '{cipher}3fb2a2a25d3143ee052178842685af1a49a6e4d926c8bf44f8160c3609f7d1b6'

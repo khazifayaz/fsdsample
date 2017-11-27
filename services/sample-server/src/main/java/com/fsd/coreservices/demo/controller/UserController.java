@@ -1,8 +1,11 @@
 package com.fsd.coreservices.demo.controller;
 
+import com.fsd.coreservices.demo.MyResourceNotFoundException;
 import com.fsd.coreservices.demo.entity.User;
 import com.fsd.coreservices.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,15 @@ public class UserController {
     @GetMapping("/")
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @RequestMapping(value = "/paginatedsearch", params = {"page", "size"})
+    public Page<User> findPaginated(@RequestParam("page") int page, @RequestParam("size") int size) {
+        Page<User> usersPage = userRepository.findAll(new PageRequest(page, size));
+        if (page > usersPage.getTotalPages()) {
+            throw new MyResourceNotFoundException();
+        }
+        return usersPage;
     }
 
     @GetMapping("/{id}")

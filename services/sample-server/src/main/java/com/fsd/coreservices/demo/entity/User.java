@@ -62,7 +62,6 @@ public class User {
     }
 
     /**
-     *
      * @param sjsuid
      * @param useremail
      * @param password
@@ -79,7 +78,6 @@ public class User {
     // Add End
 
     /**
-     *
      * @return THe Library user books list
      */
     public List<LibUserBook> getAddUpdateList() {
@@ -87,7 +85,6 @@ public class User {
     }
 
     /**
-     *
      * @param addUpdateList
      */
     public void setAddUpdateList(List<LibUserBook> addUpdateList) {
@@ -95,7 +92,6 @@ public class User {
     }
 
     /**
-     *
      * @return The ID of the user
      */
     public Integer getId() {
@@ -103,7 +99,6 @@ public class User {
     }
 
     /**
-     *
      * @param id
      */
     public void setId(Integer id) {
@@ -111,7 +106,6 @@ public class User {
     }
 
     /**
-     *
      * @return
      */
     public Long getSjsuid() {
@@ -119,7 +113,6 @@ public class User {
     }
 
     /**
-     *
      * @param sjsuid
      */
     public void setSjsuid(Long sjsuid) {
@@ -127,7 +120,6 @@ public class User {
     }
 
     /**
-     *
      * @return
      */
     public String getUseremail() {
@@ -135,7 +127,6 @@ public class User {
     }
 
     /**
-     *
      * @param username
      */
     public void setUseremail(String username) {
@@ -143,7 +134,6 @@ public class User {
     }
 
     /**
-     *
      * @return
      */
     public String getPassword() {
@@ -151,7 +141,6 @@ public class User {
     }
 
     /**
-     *
      * @param password
      */
     public void setPassword(String password) {
@@ -159,7 +148,6 @@ public class User {
     }
 
     /**
-     *
      * @return
      */
     public String getRole() {
@@ -167,7 +155,6 @@ public class User {
     }
 
     /**
-     *
      * @param role
      */
     public void setRole(String role) {
@@ -175,7 +162,6 @@ public class User {
     }
 
     /**
-     *
      * @return
      */
     public boolean isEnabled() {
@@ -183,7 +169,6 @@ public class User {
     }
 
     /**
-     *
      * @param enabled
      */
     public void setEnabled(boolean enabled) {
@@ -206,7 +191,6 @@ public class User {
     }
 
     /**
-     *
      * @return The string representation of theuser object.
      */
     @Override

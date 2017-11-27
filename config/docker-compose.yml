@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  config:
+  core-config:
     image: fsdapps/core-config-server:0.0.1-SNAPSHOT
     ports:
-    - 9995
+    - 9995:9995
     environment:
       - SPRING_PROFILES_ACTIVE=docker
       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
@@ -16,46 +16,27 @@ services:
 
   demo-mysql:
     image: mysql:latest
-#    container_name: mysql-db
     ports:
       - 3306:3306
-#    networks:
-#      - net-spring-db
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 #    volumes:
-#     - /c/f/fsd/mysqlvolume:
-##    - mysql_data:/c/f/fsd/mysqlvolume
-#    restart: always
+#    - mysql_data:/c/f/fsd/mysqlvolume
+    restart: always
 
   sample-server:
     image: fsdapps/sample-server:0.0.1-SNAPSHOT
     depends_on:
       - demo-mysql
-#    command: >
-#          /bin/bash -c "
-#            while ! nc -z mysql 3306;
-#            do
-#              echo sleeping;
-#              sleep 1;
-#            done;
-#            echo Connected!;
-#          "
     ports:
     - 9191:9191
-#    networks:
-#    - net-spring-db
     environment:
       DATABASE_HOST: ${MYSQL_HOST}
       DATABASE_USER: ${MYSQL_USER}
       DATABASE_PASSWORD: ${MYSQL_PASSWORD}
       DATABASE_NAME: ${MYSQL_DATABASE}
       DATABASE_PORT: ${MYSQL_PORT}
-#      WAIT_HOSTS: mysql:3306
 
-#networks:
-#  net-spring-db:
-#    driver: bridge

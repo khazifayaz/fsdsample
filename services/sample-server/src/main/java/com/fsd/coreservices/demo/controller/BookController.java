@@ -1,10 +1,14 @@
 package com.fsd.coreservices.demo.controller;
 
+import com.fsd.coreservices.demo.MyResourceNotFoundException;
 import com.fsd.coreservices.demo.entity.Book;
 import com.fsd.coreservices.demo.model.BookPojo;
 import com.fsd.coreservices.demo.repository.BookRepository;
 import com.fsd.coreservices.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -66,13 +70,28 @@ public class BookController {
         return booksList;
     }
 
+    @RequestMapping(value = "/paginatedsearch", params = {"page", "size"})
+    public Page<BookPojo> findPaginated(@RequestParam("page") int page, @RequestParam("size") int size) {
+        Page<Book> books = bookRepository.findAll(new PageRequest(page, size));
+        Page<BookPojo> dtoPage = bookRepository.findAll(new PageRequest(page, size)).map(new Converter<Book, BookPojo>() {
+            @Override
+            public BookPojo convert(Book book) {
+                return toBookPojo(book);
+            }
+        });
+        if (page > dtoPage.getTotalPages()) {
+            throw new MyResourceNotFoundException();
+        }
+        return dtoPage;
+    }
+
     @PostMapping("/")
-    public Book createBook( @RequestBody Book book) {
+    public Book createBook(@RequestBody Book book) {
         return bookRepository.save(book);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable(value = "id") Long bookId,@RequestBody Book bookDetails) {
+    public ResponseEntity<Book> updateBook(@PathVariable(value = "id") Long bookId, @RequestBody Book bookDetails) {
         Book book = bookRepository.findOne(bookId);
         if (book == null) {
             return ResponseEntity.notFound().build();
